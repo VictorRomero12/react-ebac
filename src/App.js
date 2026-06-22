@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Header from './components/Header';
+import Song from './components/Song';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    console.log("🚀 La aplicación de la Biblioteca Musical se ha cargado correctamente.");
+  }
+
+  render() {
+    const canciones = [
+      { id: 1, titulo: "Starboy", artista: "The Weeknd", album: "Starboy", duracion: "3:50" },
+      { id: 2, titulo: "Instant Crumb", artista: "Daft Punk", album: "Random Access Memories", duracion: "5:37" },
+      { id: 3, titulo: "Blinding Lights", artista: "The Weeknd", album: "After Hours", duracion: "3:20" },
+      { id: 4, titulo: "Nightcall", artista: "Kavinsky", album: "Outrun", duracion: "4:18" }
+    ];
+
+    return (
+      <div className="app-container">
+        <Header />
+        
+        <main className="playlist-container">
+          <h2>Mi Playlist</h2>
+          <div className="songs-list">
+            {canciones.map((cancion) => (
+              <Song 
+                key={cancion.id}
+                titulo={cancion.titulo}
+                artista={cancion.artista}
+                album={cancion.album}
+                duracion={cancion.duracion}
+              />
+            ))}
+          </div>
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;

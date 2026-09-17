@@ -1,0 +1,12 @@
+.playlist-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--text-muted);
+  padding-left: 10px;
+}
+
+.songs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

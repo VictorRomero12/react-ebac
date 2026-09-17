@@ -1,42 +1,44 @@
-import React, { Component } from 'react';
-import Header from './components/Header';
-import Song from './components/Song';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header/Header';
+import SearchResults from './components/SearchResults/SearchResults';
+import Library from './components/Library/Library';
 import './App.css';
 
-class App extends Component {
-  componentDidMount() {
-    console.log("🚀 La aplicación de la Biblioteca Musical se ha cargado correctamente.");
-  }
+const App = () => {
+  const cancionesFicticias = [
+    { id: 1, titulo: "Starboy", artista: "The Weeknd", album: "Starboy", duracion: "3:50" },
+    { id: 2, titulo: "Instant Crush", artista: "Daft Punk", album: "Random Access Memories", duracion: "5:37" },
+    { id: 3, titulo: "Blinding Lights", artista: "The Weeknd", album: "After Hours", duracion: "3:20" },
+    { id: 4, titulo: "Nightcall", artista: "Kavinsky", album: "Outrun", duracion: "4:18" }
+  ];
 
-  render() {
-    const canciones = [
-      { id: 1, titulo: "Starboy", artista: "The Weeknd", album: "Starboy", duracion: "3:50" },
-      { id: 2, titulo: "Instant Crumb", artista: "Daft Punk", album: "Random Access Memories", duracion: "5:37" },
-      { id: 3, titulo: "Blinding Lights", artista: "The Weeknd", album: "After Hours", duracion: "3:20" },
-      { id: 4, titulo: "Nightcall", artista: "Kavinsky", album: "Outrun", duracion: "4:18" }
-    ];
 
-    return (
-      <div className="app-container">
-        <Header />
-        
-        <main className="playlist-container">
-          <h2>Mi Playlist</h2>
-          <div className="songs-list">
-            {canciones.map((cancion) => (
-              <Song 
-                key={cancion.id}
-                titulo={cancion.titulo}
-                artista={cancion.artista}
-                album={cancion.album}
-                duracion={cancion.duracion}
-              />
-            ))}
-          </div>
-        </main>
-      </div>
-    );
-  }
+  const [searchResults] = useState(cancionesFicticias);
+  const [library, setLibrary] = useState([]);
+
+
+  useEffect(() => {
+    console.log(` La biblioteca se ha actualizado. Total de canciones: ${library.length}`);
+  }, [library]);
+
+  const addToLibrary = (cancion) => {
+    // Evitar duplicados
+    if (!library.find(item => item.id === cancion.id)) {
+      setLibrary([...library, cancion]);
+    } else {
+      alert("Esta canción ya está en tu biblioteca");
+    }
+  };
+
+  return (
+    <div className="app-container">
+      <Header />
+      <main className="main-content">
+        <SearchResults results={searchResults} onAdd={addToLibrary} />
+        <Library songs={library} />
+      </main>
+    </div>
+  );
 }
 
 export default App;

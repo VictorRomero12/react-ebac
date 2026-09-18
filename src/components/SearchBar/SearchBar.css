@@ -1,0 +1,32 @@
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.search-bar input {
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid var(--text-muted);
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  width: 100%;
+  max-width: 400px;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--brand-color);
+  color: var(--bg-dark);
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.search-bar button:hover {
+  opacity: 0.8;
+}

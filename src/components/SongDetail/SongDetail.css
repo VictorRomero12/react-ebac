@@ -1,0 +1,29 @@
+.song-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.back-link {
+  color: var(--brand-color);
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.detail-card {
+  display: flex;
+  gap: 30px;
+  background-color: var(--bg-surface);
+  padding: 30px;
+  border-radius: 12px;
+}
+.detail-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.description {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
